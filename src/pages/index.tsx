@@ -1,11 +1,21 @@
 import Head from 'next/head'
-import Image from 'next/image'
+
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import { TypeAnimation } from 'react-type-animation';
+import { useState } from 'react';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { Button } from "@mui/material";
+import { UseMediaQueryOptions } from '@mui/material';
+import useBreakpoint from '@/hooks/useBreakpoints';
+import Router from 'next/router'  
+import { LoginPage } from './login';
+
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const [isFirstLineComplete,setIsFirstLineComplete] = useState(false);
   return (
     <>
       <Head>
@@ -14,109 +24,36 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.tsx</code>
-          </p>
+      <main>
+        <Row>
+          <div style={{display:'flex', alignItems: 'center', justifyContent:'center'}}>
+              <h1 style={{fontSize:'3rem'}}>
+                Papdi Chart
+              </h1>
+        </div>
+        </Row>
+        <Row>
+          <div style={{display:'flex',justifyContent:'center'}}>
+        <TypeAnimation sequence={[
+        'Tell your story, with data'
+      ]}
+      wrapper="span"
+      cursor={false}
+      repeat={1}
+      style={{ fontSize: '2em', display: 'inline-block' }}>
+        </TypeAnimation>
+        </div>
+        </Row>
+        <Row>
+          <div style={{display:'flex', justifyContent:'center', marginTop:'2rem'}}>
+          <Button onClick={()=>Router.push('/dashboards')} style={{background: 'linear-gradient(to right, #FF512F, #DD2476)!important', color:'white', borderRadius:'1rem', fontSize:'1rem', padding:'1rem'}}>Try Now</Button>
+          </div>
+        </Row>
+        <Row>
           <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
+          <LoginPage></LoginPage>
           </div>
-        </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
+        </Row>
       </main>
     </>
   )
